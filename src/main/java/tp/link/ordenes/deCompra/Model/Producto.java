@@ -3,7 +3,7 @@ package tp.link.ordenes.deCompra.Model;
 public class Producto {
 	protected String nombre;
 	protected int stock;
-	protected Proveedor proveedor;
+	protected String proveedor;
 	protected Vendedor vendedor;
 	protected double precio;
 	/*                 */
@@ -14,7 +14,7 @@ public class Producto {
 	public void modificar(int cantidad){
 		stock -= cantidad;
 	}
-	public void nuevoProv(Proveedor nuevoProveedor) {
+	public void nuevoProv(String nuevoProveedor) {
 		proveedor = nuevoProveedor;
 	}
 	
@@ -33,10 +33,10 @@ public class Producto {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-	public Proveedor getProveedor() {
+	public String getProveedor() {
 		return proveedor;
 	}
-	public void setProveedor(Proveedor proveedor) {
+	public void setProveedor(String proveedor) {
 		this.proveedor = proveedor;
 	}
 	public Vendedor getVendedor() {

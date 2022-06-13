@@ -1,6 +1,6 @@
 package tp.link.ordenes.deCompra.Model;
 
-public class PromoMiembro implements Promocion{
+public class PromoMiembro extends Promocion{
 	protected double porcentajeDescontable;
 	
 	@Override

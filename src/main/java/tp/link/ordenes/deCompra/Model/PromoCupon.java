@@ -1,6 +1,6 @@
 package tp.link.ordenes.deCompra.Model;
 
-public class PromoCupon implements Promocion{
+public class PromoCupon extends Promocion{
 	protected Cupon cuponPromo;
 	
 	@Override

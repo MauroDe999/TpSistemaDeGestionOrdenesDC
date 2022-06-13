@@ -2,7 +2,7 @@ package tp.link.ordenes.deCompra.Model;
 
 import java.util.Collection;
 
-public class Administrador {
+public class Administrador extends Tipo{
 	protected Collection<Promocion> promociones;
 	protected Collection<Vendedor> vendedores;
 	

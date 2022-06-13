@@ -1,6 +1,6 @@
 package tp.link.ordenes.deCompra.Model;
 
-public class PromoMedioDePago implements Promocion {
+public class PromoMedioDePago extends Promocion {
 	protected String nombreMedioDP;
 	protected double porcentajeDescontable;
 

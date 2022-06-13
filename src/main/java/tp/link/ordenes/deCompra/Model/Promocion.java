@@ -1,6 +1,10 @@
 package tp.link.ordenes.deCompra.Model;
 
-public interface Promocion {
-	public boolean aplicable(Cliente cliente, MedioDePago medio);
-	public double montoDescontado(double montoTotal);
+public class Promocion {
+	public boolean aplicable(Cliente cliente, MedioDePago medio) {
+		return false;
+	};
+	public double montoDescontado(double montoTotal) {
+		return 0;
+	};
 }

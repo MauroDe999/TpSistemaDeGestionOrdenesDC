@@ -4,8 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
-public class Cliente {
-	protected String nombre;
+public class Cliente extends Tipo{
 	protected CarritoDeCompra carrito;
 	protected Collection<Tarjeta> tarjetas;
 	protected boolean esMiembro;
@@ -47,26 +46,16 @@ public class Cliente {
 	
 	/*GettersAndSetters*/
 	
-	public Cliente(String nombre, CarritoDeCompra carrito, Collection<Tarjeta> tarjetas, boolean esMiembro,
-			Dinero efectivo, Collection<Cupon> cupones, Date hoy) {
+	public Cliente(CarritoDeCompra carrito, Collection<Tarjeta> tarjetas, boolean esMiembro,
+			Dinero efectivo, Collection<Cupon> cupones) {
 		super();
-		this.nombre = nombre;
 		this.carrito = carrito;
 		this.tarjetas = tarjetas;
 		this.esMiembro = esMiembro;
 		this.efectivo = efectivo;
 		this.cupones = cupones;
-		this.hoy = hoy;
 	}
 	
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	public CarritoDeCompra getCarrito() {
 		return carrito;
 	}
@@ -113,7 +102,5 @@ public class Cliente {
 
 	public void setHoy(Date hoy) {
 		this.hoy = hoy;
-	}
-	
-	
+	}	
 }

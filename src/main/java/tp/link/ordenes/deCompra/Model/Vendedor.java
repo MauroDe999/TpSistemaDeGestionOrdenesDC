@@ -2,7 +2,7 @@ package tp.link.ordenes.deCompra.Model;
 
 import java.util.Collection;
 
-public class Vendedor {
+public class Vendedor extends Tipo{
 	protected Collection<Producto> productos;
 	protected Collection<Promocion> promos;
 	protected Collection<OrdenDeCompra> ordenes;
@@ -22,33 +22,41 @@ public class Vendedor {
 	public void agregarOrden(OrdenDeCompra orden){
 		ordenes.add(orden);
 	}
-	public void gestionarOrden(OrdenDeCompra orden) {
+	public void gestionarOrden(OrdenDeCompra orden) throws Exception {
+		this.verificarExistOrdenOk(orden);
 		ganancias += orden.getMonto();
 		orden.getProductosAC().forEach(x->x.modificarStock());
+		ordenes.remove(orden);
 	}
 	/*Cambiar proveedor*/
-	public void cambiarProveedor(Proveedor proveedor, Producto producto){
+	public void cambiarProveedor(String proveedor, Producto producto){
 		producto.nuevoProv(proveedor);
 	}
 	/*Gestion de Productos*/
 	public void agregarProducto(Producto nuevoProd) throws Exception {
-		this.verificarExistenciaOK(nuevoProd);
+		this.verificarExistProdOK(nuevoProd);
 		productos.add(nuevoProd);
 	}
 	public void quitarProducto(Producto prod) throws Exception {
-		this.verificarExistenciaNoOK(prod);
+		this.verificarExistProdNoOK(prod);
 		productos.remove(prod);
 	}
-	public void verificarExistenciaOK(Producto nuevoProd) throws Exception {
+	public void verificarExistProdOK(Producto nuevoProd) throws Exception {
 		if(productos.contains(nuevoProd)) {
 			throw new Exception("Este producto YA existe");
 		}
 	}
-	public void verificarExistenciaNoOK(Producto nuevoProd) throws Exception {
+	public void verificarExistProdNoOK(Producto nuevoProd) throws Exception {
 		if(!productos.contains(nuevoProd)) {
 			throw new Exception("Este producto NO existe");
 		}
 	}
+	public void verificarExistOrdenOk(OrdenDeCompra orden) throws Exception{
+		if(!ordenes.contains(orden)) {
+			throw new Exception("Esta orden NO existe");
+		}
+	}
+	
 	/*Recibir promos de admin*/
 	public void nuevasPromos(Collection<Promocion> nuevasPromos) {
 		promos = nuevasPromos;
