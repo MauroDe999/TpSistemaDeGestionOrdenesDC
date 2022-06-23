@@ -1,65 +1,67 @@
 package tp.link.ordenes.deCompra.Model;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.stream.Collectors;
 
-public class Cliente extends Tipo{
+import javax.persistence.*;
+
+@Entity
+public class Cliente extends Usuario{
+	@Transient
 	protected CarritoDeCompra carrito;
+	@Transient
 	protected Collection<Tarjeta> tarjetas;
+	@Transient
 	protected boolean esMiembro;
-	protected Dinero efectivo;
+	@Transient
 	protected Collection<Cupon> cupones;
-	protected Date hoy = new Date();
 	
-	public void pagar(MedioDePago medio) throws Exception {
-		double precioFinal =this.precioFinal(carrito.getVendedor().getPromos(), medio);
-		this.verificarCostoCompra(medio, precioFinal);
-		medio.gastar(precioFinal);
-		this.generarOrden();
+	@Override
+	public String rol() {
+		return "Cliente";
 	}
-	
+	public void pagar(Tarjeta tarjeta) throws Exception {
+		double precioFinal =this.precioFinal(carrito.getVendedor().getPromos(), tarjeta);
+		tarjeta.verificarHabilitada();
+		tarjeta.verificarCostoCompra(precioFinal);
+		tarjeta.gastar(precioFinal);
+		this.generarOrden();
+		carrito.vaciar();
+	}
+	public void quitarDelCarrito(ProductoAComprar productoAC) throws Exception {
+		carrito.quitar(productoAC);
+	}
 	public void agregarAlCarrito(int cantidad, Producto producto) throws Exception {
 		producto.getVendedor().verificarCantAbsurda(cantidad);
 		producto.getVendedor().verificarCantEnStock(cantidad, producto);
-		carrito.agregar(new ProductoAComprar(producto, cantidad), producto.precioBase(cantidad, producto));
+		carrito.agregar(new ProductoAComprar(producto, cantidad), producto.precioBase(cantidad));
 	}
 	
-	public double precioFinal(Collection<Promocion> promos, MedioDePago medio) {
-		Collection<Promocion> promosDisponibles = promos.stream().filter(x->x.aplicable(this, medio)).collect(Collectors.toList());
+	public double precioFinal(Collection<Promocion> promos, Tarjeta tarjeta) {
+		Collection<Promocion> promosDisponibles = promos.stream().filter(x->x.aplicable(this, tarjeta)).collect(Collectors.toList());
 		double montoFinal = carrito.getPrecioTotal();
 		for(Promocion promo:promosDisponibles) {
 			montoFinal -= promo.montoDescontado(montoFinal);
 		}
 		return montoFinal;
 	}
-	
-	public void verificarCostoCompra(MedioDePago medio, double precioFinal) throws Exception{
-		if(medio.getSaldo() < precioFinal) {
-			throw new Exception("No alcanza dinero para la compra");
-		}
-	}
-	
 	public void generarOrden(){
 		carrito.enviarOrden();
 	}
 	
 	/*GettersAndSetters*/
 	
-	public Cliente(CarritoDeCompra carrito, Collection<Tarjeta> tarjetas, boolean esMiembro,
-			Dinero efectivo, Collection<Cupon> cupones) {
-		super();
+	public Cliente(String mail, String password, Integer id, int dni, CarritoDeCompra carrito, Collection<Tarjeta> tarjetas,
+			boolean esMiembro, Collection<Cupon> cupones) {
+		super(mail, password, id, dni);
 		this.carrito = carrito;
 		this.tarjetas = tarjetas;
 		this.esMiembro = esMiembro;
-		this.efectivo = efectivo;
 		this.cupones = cupones;
 	}
-	
 	public CarritoDeCompra getCarrito() {
 		return carrito;
 	}
-
 	public void setCarrito(CarritoDeCompra carrito) {
 		this.carrito = carrito;
 	}
@@ -80,14 +82,6 @@ public class Cliente extends Tipo{
 		this.esMiembro = esMiembro;
 	}
 
-	public Dinero getEfectivo() {
-		return efectivo;
-	}
-
-	public void setEfectivo(Dinero efectivo) {
-		this.efectivo = efectivo;
-	}
-
 	public Collection<Cupon> getCupones() {
 		return cupones;
 	}
@@ -95,12 +89,4 @@ public class Cliente extends Tipo{
 	public void setCupones(Collection<Cupon> cupones) {
 		this.cupones = cupones;
 	}
-
-	public Date getHoy() {
-		return hoy;
-	}
-
-	public void setHoy(Date hoy) {
-		this.hoy = hoy;
-	}	
 }

@@ -1,5 +1,6 @@
 package tp.link.ordenes.deCompra.Controller;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,21 +15,25 @@ import org.springframework.data.domain.*;
 
 @RestController
 @RequestMapping("/vendedores")
-public class ProductoController {
+public class PromoController {
 	@Autowired
-	private RepoProducto repoProd;
+	private RepoPromos repoProm;
 	
 	@GetMapping("")
-	public Page<Producto> all(Pageable page){
-		return repoProd.findAll(page);
+	public Page<Promocion> all(Pageable page){
+		return repoProm.findAll(page);
 	}
 	@GetMapping("/{dni}")
-	public Producto get(@PathVariable("dni") int dniUsu){
-		return repoProd.findByDni(dniUsu);
+	public Promocion get(@PathVariable("dni") int dniUsu){
+		return repoProm.findByDni(dniUsu);
 	}
 	@PostMapping("")
-	public RedirectView post(){
-		return new RedirectView("/usuarios");
+	public void post(Promocion promo){
+		repoProm.save(promo);
+	}
+	@DeleteMapping("")
+	public void delete(Promocion promo) {
+		repoProm.delete(promo);
 	}
 	
 }

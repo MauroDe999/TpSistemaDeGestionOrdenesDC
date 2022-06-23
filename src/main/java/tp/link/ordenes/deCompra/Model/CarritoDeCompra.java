@@ -2,7 +2,11 @@ package tp.link.ordenes.deCompra.Model;
 
 import java.util.Collection;
 
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
 public class CarritoDeCompra {
+	@Transient
 	protected Collection<ProductoAComprar> productosAC;
 	protected double precioTotal;
 	protected Vendedor vendedor;
@@ -11,8 +15,24 @@ public class CarritoDeCompra {
 		productosAC.add(productoAC);
 		precioTotal += precioProducto;
 	}
+	public void quitar(ProductoAComprar productoAC) throws Exception {
+		this.verificarExistencia(productoAC);
+		double precioBaseProd = productoAC.getProducto().precioBase(productoAC.getCantidad());
+		precioTotal -= precioBaseProd;
+		productosAC.remove(productoAC);
+	}
+	public void vaciar() {
+		productosAC.clear();
+		precioTotal = 0;
+	}
 	public void enviarOrden() {
 		vendedor.agregarOrden(new OrdenDeCompra(precioTotal, productosAC));
+	}
+	
+	public void verificarExistencia(ProductoAComprar productoAC) throws Exception {
+		if(!productosAC.contains(productoAC)) {
+			throw new Exception("Este producto no se encuentra dentro del carrito");
+		}
 	}
 	
 	/*GettersAndSetters*/

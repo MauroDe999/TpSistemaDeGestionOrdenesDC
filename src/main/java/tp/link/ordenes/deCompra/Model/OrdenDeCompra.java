@@ -2,10 +2,15 @@ package tp.link.ordenes.deCompra.Model;
 
 import java.util.Collection;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class OrdenDeCompra {
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	protected Integer id;
 	protected double monto;
 	protected Collection<ProductoAComprar> productosAC;
-	
 	
 	public OrdenDeCompra(double monto, Collection<ProductoAComprar> productosAC) {
 		super();

@@ -4,7 +4,7 @@ public class PromoMiembro extends Promocion{
 	protected double porcentajeDescontable;
 	
 	@Override
-	public boolean aplicable(Cliente cliente, MedioDePago medio) {
+	public boolean aplicable(Cliente cliente, Tarjeta tarjeta) {
 		return cliente.isEsMiembro();
 	}
 

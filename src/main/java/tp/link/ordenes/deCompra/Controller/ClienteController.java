@@ -14,17 +14,17 @@ import org.springframework.data.domain.*;
 
 @RestController
 @RequestMapping("/vendedores")
-public class ProductoController {
+public class ClienteController {
 	@Autowired
-	private RepoProducto repoProd;
+	private RepoCliente repoCli;
 	
 	@GetMapping("")
-	public Page<Producto> all(Pageable page){
-		return repoProd.findAll(page);
+	public Page<Cliente> all(Pageable page){
+		return repoCli.findAll(page);
 	}
 	@GetMapping("/{dni}")
-	public Producto get(@PathVariable("dni") int dniUsu){
-		return repoProd.findByDni(dniUsu);
+	public Cliente get(@PathVariable("dni") int dniUsu){
+		return repoCli.findByDni(dniUsu);
 	}
 	@PostMapping("")
 	public RedirectView post(){

@@ -2,12 +2,25 @@ package tp.link.ordenes.deCompra.Model;
 
 import java.util.Collection;
 
-public class Vendedor extends Tipo{
+import javax.persistence.*;
+
+@Entity
+public class Vendedor extends Usuario{
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	protected Integer id;
+	@Transient
 	protected Collection<Producto> productos;
+	@Transient
 	protected Collection<Promocion> promos;
+	@Transient
 	protected Collection<OrdenDeCompra> ordenes;
+	@Transient
 	protected double ganancias;
 	
+	@Override
+	public String rol() {
+		return "Vendedor";
+	}
 	public void verificarCantAbsurda(int cantidad) throws Exception {
 		if(cantidad <= 0) {
 			throw new Exception("Cantidad invalida, agregar una mayor a cero");
@@ -81,6 +94,12 @@ public class Vendedor extends Tipo{
 	public void setOrdenes(Collection<OrdenDeCompra> ordenes) {
 		this.ordenes = ordenes;
 	}
-	
-	
+	public Vendedor(String mail, String password, Integer id, int dni, Collection<Producto> productos,
+			Collection<Promocion> promos, Collection<OrdenDeCompra> ordenes, double ganancias) {
+		super(mail, password, id, dni);
+		this.productos = productos;
+		this.promos = promos;
+		this.ordenes = ordenes;
+		this.ganancias = ganancias;
+	}	
 }

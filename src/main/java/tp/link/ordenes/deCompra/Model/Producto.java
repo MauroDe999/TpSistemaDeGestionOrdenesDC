@@ -1,14 +1,21 @@
 package tp.link.ordenes.deCompra.Model;
 
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+@Entity
 public class Producto {
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	protected Integer id;
 	protected String nombre;
+	@Min(0)
 	protected int stock;
+	@OneToMany
 	protected String proveedor;
 	protected Vendedor vendedor;
 	protected double precio;
 	/*                 */
 	
-	public double precioBase(int cantidad, Producto producto) {
+	public double precioBase(int cantidad) {
 		return precio * cantidad;
 	}
 	public void modificar(int cantidad){

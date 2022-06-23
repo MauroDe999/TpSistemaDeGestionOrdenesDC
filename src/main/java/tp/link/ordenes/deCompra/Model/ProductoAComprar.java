@@ -3,8 +3,7 @@ package tp.link.ordenes.deCompra.Model;
 public class ProductoAComprar {
 	protected Producto producto;
 	protected int cantidad;
-	
-	
+
 	public void modificarStock() {
 		producto.modificar(cantidad);
 	}
@@ -20,7 +19,6 @@ public class ProductoAComprar {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
-	
 	public ProductoAComprar(Producto producto, int cantidad) {
 		super();
 		this.producto = producto;
