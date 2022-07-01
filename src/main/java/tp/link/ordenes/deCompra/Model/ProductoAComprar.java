@@ -1,12 +1,11 @@
 package tp.link.ordenes.deCompra.Model;
 
 import javax.persistence.*;
-
+@Entity
 public class ProductoAComprar {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	protected Integer id;
 	@OneToOne
-	@Column
 	protected Producto producto;
 	@Column
 	protected int cantidad;

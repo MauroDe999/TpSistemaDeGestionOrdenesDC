@@ -2,7 +2,7 @@ package tp.link.ordenes.deCompra.Model;
 
 import javax.persistence.*;
 
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
 public class Tarjeta {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	protected Integer id;

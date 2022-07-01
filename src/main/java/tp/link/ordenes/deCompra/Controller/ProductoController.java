@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 
 @RestController
-@RequestMapping("/vendedores")
+@RequestMapping("/productos")
 public class ProductoController {
 	@Autowired
 	private RepoProducto repoProd;
@@ -21,14 +21,6 @@ public class ProductoController {
 	@GetMapping("")
 	public Page<Producto> all(Pageable page){
 		return repoProd.findAll(page);
-	}
-	@GetMapping("/{dni}")
-	public Producto get(@PathVariable("dni") int dniUsu){
-		return repoProd.findByDni(dniUsu);
-	}
-	@PostMapping("")
-	public RedirectView post(){
-		return new RedirectView("/usuarios");
 	}
 	
 }

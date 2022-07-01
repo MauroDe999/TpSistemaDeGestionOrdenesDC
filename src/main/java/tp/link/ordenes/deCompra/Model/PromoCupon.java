@@ -2,12 +2,13 @@ package tp.link.ordenes.deCompra.Model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class PromoCupon extends Promocion{
-	@Column
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	protected Integer id;
+	@OneToOne
 	protected Cupon cuponPromo;
 	
 	@Override

@@ -10,6 +10,4 @@ import tp.link.ordenes.deCompra.Model.Vendedor;
 public interface RepoVendedor extends PagingAndSortingRepository<Vendedor, Integer>{
 	
     Page<Vendedor> findAll(Pageable page);
-	
-    Vendedor findByDni(int dni);
 }

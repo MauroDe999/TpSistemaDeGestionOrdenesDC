@@ -8,6 +8,4 @@ public interface RepoUsuario extends PagingAndSortingRepository<Usuario, Integer
 	
 	Page<Usuario> findAll(Pageable page);
 	
-	Usuario findByDni(int dni);
-	
 }

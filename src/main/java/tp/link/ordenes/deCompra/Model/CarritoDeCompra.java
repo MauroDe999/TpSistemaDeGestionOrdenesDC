@@ -3,7 +3,7 @@ package tp.link.ordenes.deCompra.Model;
 import java.util.Collection;
 
 import javax.persistence.*;
-
+@Entity
 public class CarritoDeCompra {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
@@ -13,8 +13,7 @@ public class CarritoDeCompra {
 	protected Collection<ProductoAComprar> productosAC;
 	@Column
 	protected double precioTotal;
-	@ManyToOne
-	@Column
+	@OneToOne
 	protected Vendedor vendedor;
 	
 	public void agregar(ProductoAComprar productoAC, double precioProducto) {

@@ -1,13 +1,13 @@
 package tp.link.ordenes.deCompra.Model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
-@Inheritance(strategy = InheritanceType.JOINED)
+
+@Entity
 public class Promocion {
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)

@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 
 @RestController
-@RequestMapping("/vendedores")
+@RequestMapping("/clientes")
 public class ClienteController {
 	@Autowired
 	private RepoCliente repoCli;
@@ -25,10 +25,6 @@ public class ClienteController {
 	@GetMapping("/{dni}")
 	public Cliente get(@PathVariable("dni") int dniUsu){
 		return repoCli.findByDni(dniUsu);
-	}
-	@PostMapping("")
-	public RedirectView post(){
-		return new RedirectView("/usuarios");
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+@Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
 	

@@ -19,12 +19,5 @@ public class UsuarioController {
 	public Page<Usuario> all(Pageable page){
 		return repoUsu.findAll(page);
 	}
-	@GetMapping("/{dni}")
-	public Usuario get(@PathVariable("dni") int dniUsu){
-		return repoUsu.findByDni(dniUsu);
-	}
-	@PostMapping("")
-	public RedirectView post(){
-		return new RedirectView("/usuarios");
-	}
+	
 }

@@ -23,12 +23,5 @@ public class VendedorController {
 	public Page<Vendedor> all(Pageable page){
 		return repoVen.findAll(page);
 	}
-	@GetMapping("/{dni}")
-	public Vendedor get(@PathVariable("dni") int dniUsu){
-		return repoVen.findByDni(dniUsu);
-	}
-	@PostMapping("")
-	public RedirectView post(){
-		return new RedirectView("/usuarios");
-	}
+	
 }

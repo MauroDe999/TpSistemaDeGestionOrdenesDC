@@ -8,6 +8,4 @@ public interface RepoProducto extends PagingAndSortingRepository<Producto, Integ
 	
 	Page<Producto> findAll(Pageable page);
 	
-	Producto findByDni(int dni);
-	
 }

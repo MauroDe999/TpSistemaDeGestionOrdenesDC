@@ -8,15 +8,11 @@ import javax.persistence.*;
 @Entity
 public class Cliente extends Usuario{
 	@OneToOne
-	@Column
 	protected CarritoDeCompra carrito;
 	@OneToMany
-	@Column
 	protected Collection<Tarjeta> tarjetas;
-	@Column
 	protected boolean esMiembro;
 	@OneToMany
-	@Column
 	protected Collection<Cupon> cupones;
 	
 	@Override
@@ -61,6 +57,9 @@ public class Cliente extends Usuario{
 		this.tarjetas = tarjetas;
 		this.esMiembro = esMiembro;
 		this.cupones = cupones;
+	}
+	public Cliente() {
+		super();
 	}
 	public CarritoDeCompra getCarrito() {
 		return carrito;

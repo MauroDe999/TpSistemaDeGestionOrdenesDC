@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 @Entity
 public class TarjetaEnDolares extends Tarjeta{
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	protected Integer id;
 	@Column
 	protected double conversionAPesos;
 	

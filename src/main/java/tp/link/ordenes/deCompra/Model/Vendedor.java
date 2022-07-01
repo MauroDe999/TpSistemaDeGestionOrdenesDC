@@ -6,6 +6,8 @@ import javax.persistence.*;
 
 @Entity
 public class Vendedor extends Usuario{
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	protected Integer id;
 	@OneToMany
 	@Column
 	protected Collection<Producto> productos;
