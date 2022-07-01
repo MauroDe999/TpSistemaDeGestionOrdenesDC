@@ -2,13 +2,19 @@ package tp.link.ordenes.deCompra.Model;
 
 import java.util.Collection;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 public class CarritoDeCompra {
-	@Transient
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
+	protected Integer id;
+	@OneToMany
+	@Column
 	protected Collection<ProductoAComprar> productosAC;
+	@Column
 	protected double precioTotal;
+	@ManyToOne
+	@Column
 	protected Vendedor vendedor;
 	
 	public void agregar(ProductoAComprar productoAC, double precioProducto) {
@@ -36,6 +42,13 @@ public class CarritoDeCompra {
 	}
 	
 	/*GettersAndSetters*/
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public Collection<ProductoAComprar> getProductosAC() {
 		return productosAC;
 	}
@@ -54,6 +67,4 @@ public class CarritoDeCompra {
 	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
 	}
-	
-	
 }

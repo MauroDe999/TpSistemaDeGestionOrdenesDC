@@ -1,7 +1,14 @@
 package tp.link.ordenes.deCompra.Model;
 
+import javax.persistence.*;
+
 public class ProductoAComprar {
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	protected Integer id;
+	@OneToOne
+	@Column
 	protected Producto producto;
+	@Column
 	protected int cantidad;
 
 	public void modificarStock() {
@@ -19,11 +26,18 @@ public class ProductoAComprar {
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public ProductoAComprar() {
+		super();
+	}
 	public ProductoAComprar(Producto producto, int cantidad) {
 		super();
 		this.producto = producto;
 		this.cantidad = cantidad;
 	}
-	
-	
 }

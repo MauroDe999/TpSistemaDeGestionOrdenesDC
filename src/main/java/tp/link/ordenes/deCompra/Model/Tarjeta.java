@@ -1,8 +1,16 @@
 package tp.link.ordenes.deCompra.Model;
 
+import javax.persistence.*;
+
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Tarjeta {
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	protected Integer id;
+	@Column
 	protected String nombre;
+	@Column
 	protected double saldo;
+	@Column
 	protected boolean habilitada;
 	
 	public void gastar(double precioFinal) {

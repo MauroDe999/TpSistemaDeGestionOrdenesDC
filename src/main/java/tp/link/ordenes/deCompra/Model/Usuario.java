@@ -2,19 +2,20 @@ package tp.link.ordenes.deCompra.Model;
 
 import java.util.Collection;
 
-import javax.persistence.Entity;
-import javax.persistence.GenerationType;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	protected Integer id;
 	@NotBlank
+	@Column
 	protected String mail;
+	@Column
 	protected String password;
+	@Column
 	protected int dni;
 	
 	public void nuevasPromos(Collection<Promocion> promociones) {}

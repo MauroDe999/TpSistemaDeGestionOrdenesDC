@@ -1,7 +1,13 @@
 package tp.link.ordenes.deCompra.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
+@Entity
 public class PromoMedioDePago extends Promocion {
+	@Column
 	protected String nombreTarjeta;
+	@Column
 	protected double porcentajeDescontable;
 
 	@Override

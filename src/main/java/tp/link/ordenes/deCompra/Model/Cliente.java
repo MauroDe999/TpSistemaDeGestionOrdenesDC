@@ -7,13 +7,16 @@ import javax.persistence.*;
 
 @Entity
 public class Cliente extends Usuario{
-	@Transient
+	@OneToOne
+	@Column
 	protected CarritoDeCompra carrito;
-	@Transient
+	@OneToMany
+	@Column
 	protected Collection<Tarjeta> tarjetas;
-	@Transient
+	@Column
 	protected boolean esMiembro;
-	@Transient
+	@OneToMany
+	@Column
 	protected Collection<Cupon> cupones;
 	
 	@Override

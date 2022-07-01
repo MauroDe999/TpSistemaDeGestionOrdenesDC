@@ -1,6 +1,10 @@
 package tp.link.ordenes.deCompra.Model;
 
+import javax.persistence.*;
+
+@Entity
 public class TarjetaEnDolares extends Tarjeta{
+	@Column
 	protected double conversionAPesos;
 	
 	@Override

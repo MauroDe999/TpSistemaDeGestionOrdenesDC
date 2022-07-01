@@ -6,15 +6,16 @@ import javax.persistence.*;
 
 @Entity
 public class Vendedor extends Usuario{
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	protected Integer id;
-	@Transient
+	@OneToMany
+	@Column
 	protected Collection<Producto> productos;
-	@Transient
+	@OneToMany
+	@Column
 	protected Collection<Promocion> promos;
-	@Transient
+	@OneToMany
+	@Column
 	protected Collection<OrdenDeCompra> ordenes;
-	@Transient
+	@Column
 	protected double ganancias;
 	
 	@Override

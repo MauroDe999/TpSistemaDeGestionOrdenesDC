@@ -4,15 +4,22 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 @Entity
 public class Producto {
+	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
 	protected Integer id;
+	@Column
 	protected String nombre;
-	@Min(0)
+	@Column
 	protected int stock;
-	@OneToMany
+	@Column
 	protected String proveedor;
+	@ManyToOne
+	@JoinColumn
 	protected Vendedor vendedor;
+	@Column
 	protected double precio;
+	
 	/*                 */
 	
 	public double precioBase(int cantidad) {
