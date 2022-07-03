@@ -1,5 +1,6 @@
 package tp.link.ordenes.deCompra.Model;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -12,9 +13,9 @@ public class PromoCupon extends Promocion{
 	protected Cupon cuponPromo;
 	
 	@Override
-	public boolean aplicable(Cliente cliente, Tarjeta tarjeta) {
+	public boolean aplicable(Cliente cliente, Tarjeta tarjeta, Collection<Integer> numeroPromos) {
 		Date hoy = new Date();
-		return cliente.getCupones().contains(cuponPromo) && hoy.before(cuponPromo.fechaLimite);
+		return numeroPromos.contains(cuponPromo.getNumero()) && hoy.before(cuponPromo.fechaLimite);
 	}
 
 	@Override
@@ -22,4 +23,9 @@ public class PromoCupon extends Promocion{
 		return cuponPromo.getMonto();
 	}
 
+	public PromoCupon(String nombre, Cupon cuponPromo) {
+		super(nombre);
+		this.cuponPromo = cuponPromo;
+	}
+	
 }

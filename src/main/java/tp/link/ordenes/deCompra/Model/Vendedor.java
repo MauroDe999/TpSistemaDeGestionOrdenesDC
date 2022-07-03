@@ -19,6 +19,7 @@ public class Vendedor extends Usuario{
 	protected Collection<OrdenDeCompra> ordenes;
 	@Column
 	protected double ganancias;
+	protected String nombre;
 	
 	@Override
 	public String rol() {
@@ -97,12 +98,14 @@ public class Vendedor extends Usuario{
 	public void setOrdenes(Collection<OrdenDeCompra> ordenes) {
 		this.ordenes = ordenes;
 	}
-	public Vendedor(String mail, String password, Integer id, int dni, Collection<Producto> productos,
-			Collection<Promocion> promos, Collection<OrdenDeCompra> ordenes, double ganancias) {
-		super(mail, password, id, dni);
+	public Vendedor(String mail, String password, int dni, Collection<Producto> productos, Collection<Promocion> promos,
+			Collection<OrdenDeCompra> ordenes, double ganancias, String nombre) {
+		super(mail, password, dni);
 		this.productos = productos;
 		this.promos = promos;
 		this.ordenes = ordenes;
 		this.ganancias = ganancias;
-	}	
+		this.nombre = nombre;
+	}
+	
 }

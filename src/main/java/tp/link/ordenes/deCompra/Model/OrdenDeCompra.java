@@ -28,7 +28,6 @@ public class OrdenDeCompra {
 	}
 	public OrdenDeCompra() {
 		super();
-		
 	}
 	public Integer getId() {
 		return id;

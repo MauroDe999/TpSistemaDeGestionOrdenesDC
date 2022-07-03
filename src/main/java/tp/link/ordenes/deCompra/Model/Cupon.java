@@ -13,6 +13,8 @@ public class Cupon {
 	@OneToOne
 	protected Producto productoCupon;
 	@Column
+	protected Integer numero;
+	@Column
 	protected double monto;
 	
 	public Date getFechaLimite() {
@@ -39,7 +41,20 @@ public class Cupon {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	public Integer getNumero() {
+		return numero;
+	}
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
 	public Cupon() {
 		super();
+	}
+	public Cupon(Date fechaLimite, Producto productoCupon, Integer numero, double monto) {
+		super();
+		this.fechaLimite = fechaLimite;
+		this.productoCupon = productoCupon;
+		this.numero = numero;
+		this.monto = monto;
 	}
 }

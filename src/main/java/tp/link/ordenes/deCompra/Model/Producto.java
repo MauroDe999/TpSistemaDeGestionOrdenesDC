@@ -1,7 +1,6 @@
 package tp.link.ordenes.deCompra.Model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 @Entity
 public class Producto {
 	
@@ -32,8 +31,6 @@ public class Producto {
 		proveedor = nuevoProveedor;
 	}
 	
-	
-	
 	/*GettersAndSetters*/
 	public String getNombre() {
 		return nombre;
@@ -63,6 +60,14 @@ public class Producto {
 		return precio;
 	}
 	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+	public Producto(String nombre, int stock, String proveedor, Vendedor vendedor, double precio) {
+		super();
+		this.nombre = nombre;
+		this.stock = stock;
+		this.proveedor = proveedor;
+		this.vendedor = vendedor;
 		this.precio = precio;
 	}
 }

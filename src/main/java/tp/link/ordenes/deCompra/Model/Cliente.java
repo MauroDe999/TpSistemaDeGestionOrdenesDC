@@ -1,5 +1,6 @@
 package tp.link.ordenes.deCompra.Model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -8,19 +9,18 @@ import javax.persistence.*;
 @Entity
 public class Cliente extends Usuario{
 	@OneToOne
-	protected CarritoDeCompra carrito;
-	@OneToMany
-	protected Collection<Tarjeta> tarjetas;
+	protected CarritoDeCompra carrito = new CarritoDeCompra(new ArrayList<ProductoAComprar>(), 0, null);
 	protected boolean esMiembro;
-	@OneToMany
-	protected Collection<Cupon> cupones;
+	protected Tarjeta tarjeta;
+	protected Collection<Integer> numeroCupones;
 	
 	@Override
 	public String rol() {
 		return "Cliente";
 	}
-	public void pagar(Tarjeta tarjeta) throws Exception {
-		double precioFinal =this.precioFinal(carrito.getVendedor().getPromos(), tarjeta);
+	public void pagar() throws Exception {
+		Collection<Promocion> promosV = carrito.getVendedor().getPromos();
+		double precioFinal =this.precioFinal(promosV, numeroCupones, tarjeta);
 		tarjeta.verificarHabilitada();
 		tarjeta.verificarCostoCompra(precioFinal);
 		tarjeta.gastar(precioFinal);
@@ -31,13 +31,14 @@ public class Cliente extends Usuario{
 		carrito.quitar(productoAC);
 	}
 	public void agregarAlCarrito(int cantidad, Producto producto) throws Exception {
+		this.verificarVacio(producto.getVendedor());
 		producto.getVendedor().verificarCantAbsurda(cantidad);
 		producto.getVendedor().verificarCantEnStock(cantidad, producto);
 		carrito.agregar(new ProductoAComprar(producto, cantidad), producto.precioBase(cantidad));
 	}
 	
-	public double precioFinal(Collection<Promocion> promos, Tarjeta tarjeta) {
-		Collection<Promocion> promosDisponibles = promos.stream().filter(x->x.aplicable(this, tarjeta)).collect(Collectors.toList());
+	public double precioFinal(Collection<Promocion> promos,Collection<Integer> numeroCupones, Tarjeta tarjeta) {
+		Collection<Promocion> promosDisponibles = promos.stream().filter(x->x.aplicable(this, tarjeta, numeroCupones)).collect(Collectors.toList());
 		double montoFinal = carrito.getPrecioTotal();
 		for(Promocion promo:promosDisponibles) {
 			montoFinal -= promo.montoDescontado(montoFinal);
@@ -48,18 +49,29 @@ public class Cliente extends Usuario{
 		carrito.enviarOrden();
 	}
 	
+	public void verificarVacio(Vendedor vendedor) throws Exception {
+		if(carrito.getVendedor() == null) {
+			carrito = new CarritoDeCompra(new ArrayList<ProductoAComprar>(), 0, vendedor);
+		}
+		else {
+			if(carrito.getVendedor() == vendedor) {
+				throw new Exception("NO se puede agregar productos de otro vendedor");
+			}
+		}
+	}
 	/*GettersAndSetters*/
 	
-	public Cliente(String mail, String password, Integer id, int dni, CarritoDeCompra carrito, Collection<Tarjeta> tarjetas,
-			boolean esMiembro, Collection<Cupon> cupones) {
-		super(mail, password, id, dni);
-		this.carrito = carrito;
-		this.tarjetas = tarjetas;
-		this.esMiembro = esMiembro;
-		this.cupones = cupones;
-	}
+	
 	public Cliente() {
 		super();
+	}
+	public Cliente(String mail, String password, int dni, CarritoDeCompra carrito, boolean esMiembro, Tarjeta tarjeta,
+			Collection<Integer> numeroCupones) {
+		super(mail, password, dni);
+		this.carrito = carrito;
+		this.esMiembro = esMiembro;
+		this.tarjeta = tarjeta;
+		this.numeroCupones = numeroCupones;
 	}
 	public CarritoDeCompra getCarrito() {
 		return carrito;
@@ -68,27 +80,11 @@ public class Cliente extends Usuario{
 		this.carrito = carrito;
 	}
 
-	public Collection<Tarjeta> getTarjetas() {
-		return tarjetas;
-	}
-
-	public void setTarjetas(Collection<Tarjeta> tarjetas) {
-		this.tarjetas = tarjetas;
-	}
-
 	public boolean isEsMiembro() {
 		return esMiembro;
 	}
 
 	public void setEsMiembro(boolean esMiembro) {
 		this.esMiembro = esMiembro;
-	}
-
-	public Collection<Cupon> getCupones() {
-		return cupones;
-	}
-
-	public void setCupones(Collection<Cupon> cupones) {
-		this.cupones = cupones;
 	}
 }

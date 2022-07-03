@@ -27,11 +27,10 @@ public class Usuario {
 	
 	/* GAT */
 	
-	public Usuario(String mail, String password, Integer id, int dni) {
+	public Usuario(String mail, String password, int dni) {
 		super();
 		this.mail = mail;
 		this.password = password;
-		this.id = id;
 		this.dni = dni;
 	}
 	protected Usuario() {

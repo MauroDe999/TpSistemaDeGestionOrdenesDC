@@ -9,6 +9,8 @@ public class Tarjeta {
 	@Column
 	protected String nombre;
 	@Column
+	protected int numero;
+	@Column
 	protected double saldo;
 	@Column
 	protected boolean habilitada;
@@ -27,14 +29,16 @@ public class Tarjeta {
 		}
 	}
 	/*     GAS     */
-	public Tarjeta(String nombre, double saldo, boolean habilitada) {
-		super();
-		this.nombre = nombre;
-		this.saldo = saldo;
-		this.habilitada = habilitada;
-	}
+	
 	public String getNombre() {
 		return nombre;
+	}
+	public Tarjeta(String nombre, int numero, double saldo, boolean habilitada) {
+		super();
+		this.nombre = nombre;
+		this.numero = numero;
+		this.saldo = saldo;
+		this.habilitada = habilitada;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -50,6 +54,18 @@ public class Tarjeta {
 	}
 	public void setHabilitada(boolean habilitada) {
 		this.habilitada = habilitada;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public int getNumero() {
+		return numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 	
 	

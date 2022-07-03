@@ -1,5 +1,7 @@
 package tp.link.ordenes.deCompra.Model;
 
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,15 +10,13 @@ import javax.persistence.Id;
 
 @Entity
 public class PromoMedioDePago extends Promocion {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	protected Integer id;
 	@Column
 	protected String nombreTarjeta;
 	@Column
 	protected double porcentajeDescontable;
 
 	@Override
-	public boolean aplicable(Cliente cliente, Tarjeta tarjeta) {
+	public boolean aplicable(Cliente cliente, Tarjeta tarjeta, Collection<Integer> numeroPromos) {
 		return tarjeta.getNombre().equals(nombreTarjeta);
 	}
 
@@ -24,5 +24,13 @@ public class PromoMedioDePago extends Promocion {
 	public double montoDescontado(double montoTotal) {
 		return montoTotal * porcentajeDescontable;
 	}
+
+	public PromoMedioDePago(String nombre, String nombreTarjeta, double porcentajeDescontable) {
+		super(nombre);
+		this.nombreTarjeta = nombreTarjeta;
+		this.porcentajeDescontable = porcentajeDescontable;
+	}
+
+	
 	
 }

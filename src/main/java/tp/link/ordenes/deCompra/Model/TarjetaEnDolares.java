@@ -20,8 +20,8 @@ public class TarjetaEnDolares extends Tarjeta{
 		}
 	}
 
-	public TarjetaEnDolares(String nombre, double saldo, boolean habilitada, double conversionAPesos) {
-		super(nombre, saldo, habilitada);
+	public TarjetaEnDolares(String nombre, int numero, double saldo, boolean habilitada, double conversionAPesos) {
+		super(nombre, numero, saldo, habilitada);
 		this.conversionAPesos = conversionAPesos;
 	}
 }

@@ -29,6 +29,7 @@ public class CarritoDeCompra {
 	public void vaciar() {
 		productosAC.clear();
 		precioTotal = 0;
+		vendedor = null;
 	}
 	public void enviarOrden() {
 		vendedor.agregarOrden(new OrdenDeCompra(precioTotal, productosAC));
@@ -66,4 +67,14 @@ public class CarritoDeCompra {
 	public void setVendedor(Vendedor vendedor) {
 		this.vendedor = vendedor;
 	}
+	public CarritoDeCompra(Collection<ProductoAComprar> productosAC, double precioTotal, Vendedor vendedor) {
+		super();
+		this.productosAC = productosAC;
+		this.precioTotal = precioTotal;
+		this.vendedor = vendedor;
+	}
+	public CarritoDeCompra() {
+		super();
+	}
+	
 }
