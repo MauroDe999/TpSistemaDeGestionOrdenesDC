@@ -6,7 +6,7 @@
 #### *Cliente(Posee una tarjeta como medio de pago, un carrito de compras asociado vacio y cupones, ademas de ser miembro)*
 
 #### *Vendedor(No posee productos cargados ni ordenes de compra, mas sí promociones(una de miembros y otra de medioDePago))*
-### *El proyecto se subió a heroku, al cual se puede acceder mediante la siguiente url:*
+### *El proyecto se subió a heroku, al cual se puede acceder mediante la siguiente url: https://tp-link-de-marco.herokuapp.com/*
 
 ### *ACLARACIONES:* 
 
