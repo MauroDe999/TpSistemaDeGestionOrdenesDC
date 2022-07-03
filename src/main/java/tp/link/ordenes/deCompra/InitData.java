@@ -22,15 +22,15 @@ public class InitData implements CommandLineRunner {
 	
 	protected CarritoDeCompra carrito = new CarritoDeCompra(List.of(), 0, null);
 	protected Tarjeta tarjeta = new Tarjeta("bbvaGold", 44258893, 200000, true);
-	protected Collection<Integer> cupones= List.of();
+	protected Collection<Integer> cupones= List.of(1234, 5678);
 	protected Collection<Producto> prodCacho = List.of();
 	protected Collection<OrdenDeCompra> ordenesCacho = List.of();
 	protected PromoMedioDePago promoBbva = new PromoMedioDePago("promoBBVa", "bbvaGold", 10);
 	protected PromoMiembro promoMiembro = new PromoMiembro("promoMiembro", 5);
 	protected Collection<Promocion> promosCacho = List.of(promoBbva, promoMiembro);
-	protected Cliente mauro = new Cliente("maurodemarco999@gmail.com", "123", 42145629,
+	protected Cliente mauro = new Cliente("maurodemarco999@gmail.com", "123", "42145629",
 			carrito, true, tarjeta, cupones);
-	protected Vendedor cacho = new Vendedor("cachito@gmail.com", "321", 35688021, prodCacho, promosCacho, 
+	protected Vendedor cacho = new Vendedor("cachito@gmail.com", "321", "35688021", prodCacho, promosCacho, 
 			ordenesCacho, 0, "loDeCacho");
 	
 	@Override

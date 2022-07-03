@@ -31,7 +31,7 @@ public class VendedorController {
 	
 	/*Da de alta a un vendedor*/
 	@PostMapping("")
-	public String alta(@RequestBody @Valid String mail, String password, int dni, String nombre,
+	public String alta(@RequestBody @Valid String mail, String password, String dni, String nombre,
 		BindingResult bindingResult) {
 		if(!bindingResult.hasErrors()) {
 			repoVen.save(new Vendedor(mail, password, dni, new ArrayList<Producto>(), new ArrayList<Promocion>(),

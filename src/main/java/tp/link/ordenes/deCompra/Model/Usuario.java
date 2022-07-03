@@ -17,7 +17,7 @@ public class Usuario {
 	@Column
 	protected String password;
 	@Column
-	protected int dni;
+	protected String dni;
 	
 	public void nuevasPromos(Collection<Promocion> promociones) {}
 	
@@ -27,7 +27,7 @@ public class Usuario {
 	
 	/* GAT */
 	
-	public Usuario(String mail, String password, int dni) {
+	public Usuario(String mail, String password, String dni) {
 		super();
 		this.mail = mail;
 		this.password = password;
@@ -54,10 +54,10 @@ public class Usuario {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public int getDni() {
+	public String getDni() {
 		return dni;
 	}
-	public void setDni(int dni) {
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
 }

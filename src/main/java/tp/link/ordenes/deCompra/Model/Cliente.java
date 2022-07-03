@@ -36,7 +36,6 @@ public class Cliente extends Usuario{
 		producto.getVendedor().verificarCantEnStock(cantidad, producto);
 		carrito.agregar(new ProductoAComprar(producto, cantidad), producto.precioBase(cantidad));
 	}
-	
 	public double precioFinal(Collection<Promocion> promos,Collection<Integer> numeroCupones, Tarjeta tarjeta) {
 		Collection<Promocion> promosDisponibles = promos.stream().filter(x->x.aplicable(this, tarjeta, numeroCupones)).collect(Collectors.toList());
 		double montoFinal = carrito.getPrecioTotal();
@@ -48,7 +47,6 @@ public class Cliente extends Usuario{
 	public void generarOrden(){
 		carrito.enviarOrden();
 	}
-	
 	public void verificarVacio(Vendedor vendedor) throws Exception {
 		if(carrito.getVendedor() == null) {
 			carrito = new CarritoDeCompra(new ArrayList<ProductoAComprar>(), 0, vendedor);
@@ -61,11 +59,10 @@ public class Cliente extends Usuario{
 	}
 	/*GettersAndSetters*/
 	
-	
 	public Cliente() {
 		super();
 	}
-	public Cliente(String mail, String password, int dni, CarritoDeCompra carrito, boolean esMiembro, Tarjeta tarjeta,
+	public Cliente(String mail, String password, String dni, CarritoDeCompra carrito, boolean esMiembro, Tarjeta tarjeta,
 			Collection<Integer> numeroCupones) {
 		super(mail, password, dni);
 		this.carrito = carrito;
@@ -79,11 +76,9 @@ public class Cliente extends Usuario{
 	public void setCarrito(CarritoDeCompra carrito) {
 		this.carrito = carrito;
 	}
-
 	public boolean isEsMiembro() {
 		return esMiembro;
 	}
-
 	public void setEsMiembro(boolean esMiembro) {
 		this.esMiembro = esMiembro;
 	}

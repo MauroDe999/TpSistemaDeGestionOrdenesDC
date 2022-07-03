@@ -98,7 +98,7 @@ public class Vendedor extends Usuario{
 	public void setOrdenes(Collection<OrdenDeCompra> ordenes) {
 		this.ordenes = ordenes;
 	}
-	public Vendedor(String mail, String password, int dni, Collection<Producto> productos, Collection<Promocion> promos,
+	public Vendedor(String mail, String password, String dni, Collection<Producto> productos, Collection<Promocion> promos,
 			Collection<OrdenDeCompra> ordenes, double ganancias, String nombre) {
 		super(mail, password, dni);
 		this.productos = productos;
